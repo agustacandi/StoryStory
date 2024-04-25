@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">StoryStory</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="story_image_content_description">Story Image</string>
+    <string name="add_story_button_content_description">Add Story Button</string>
+    <string name="setting_button_content_description">Setting Button</string>
+    <string name="back_button_content_description">Back Button</string>
+    <string name="story">Story</string>
+    <string name="log_in_to_storystory">Log in to StoryStory</string>
+    <string name="register_new_account">Register new account</string>
+    <string name="login">Log in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up_for_storystory">Sign up for StoryStory</string>
+    <string name="name">Name</string>
+    <string name="sign_up">Sign up</string>
+    <string name="cancel">Cancel</string>
+    <string name="post_story_button_content_description">Post Story Button</string>
+    <string name="post">Post</string>
+    <string name="what_s_happening">What\'s happening?</string>
+    <string name="camera_button_content_description">Camera Button</string>
+    <string name="error_email">Email must be use valid format</string>
+    <string name="error_password">Password must be use 8 character</string>
+</resources>

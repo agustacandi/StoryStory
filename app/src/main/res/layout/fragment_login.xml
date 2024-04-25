@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="30dp"
+    tools:context=".ui.splash.SplashFragment">
+
+    <TextView
+        android:id="@+id/login_headline"
+        style="@style/HeadlineLanding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/log_in_to_storystory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <dev.agustacandi.learn.storystory.components.EmailTextField
+        style="@style/CustomTextField"
+        android:id="@+id/ed_login_email"
+        app:cursorColor="@color/blue"
+        app:layout_constraintTop_toBottomOf="@id/login_headline"
+        app:layout_constraintStart_toStartOf="@id/login_headline"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <dev.agustacandi.learn.storystory.components.PasswordTextField
+        style="@style/CustomTextField"
+        android:id="@+id/ed_login_password"
+        app:layout_constraintTop_toBottomOf="@id/ed_login_email"
+        app:layout_constraintStart_toStartOf="@id/login_headline"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        style="@style/ButtonTitle"
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="12dp"
+        android:enabled="false"
+        android:text="@string/login"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ed_login_password" />
+
+    <Button
+        style="@style/TextRegular"
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up_for_storystory"
+        android:textColor="@color/blue"
+        android:backgroundTint="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_button"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
