@@ -11,30 +11,9 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import dev.agustacandi.learn.storystory.R
 
-class PasswordTextField : AppCompatEditText {
-    constructor(context: Context) : super(context) {
-        initAction()
-    }
+class PasswordTextField @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : AppCompatEditText(context, attrs) {
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        initAction()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        initAction()
-    }
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
-        hint = ContextCompat.getString(context, R.string.password)
-    }
-
-    private fun initAction() {
+    init {
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {}
@@ -44,5 +23,10 @@ class PasswordTextField : AppCompatEditText {
                     R.string.error_password)
             }
         })
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
     }
 }

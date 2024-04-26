@@ -1,7 +1,7 @@
 package dev.agustacandi.learn.storystory.data.remote.retrofit
 
 import dev.agustacandi.learn.storystory.data.remote.response.LoginResponse
-import dev.agustacandi.learn.storystory.data.remote.response.Response
+import dev.agustacandi.learn.storystory.data.lib.BaseResponse
 import dev.agustacandi.learn.storystory.data.remote.response.StoryResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -31,7 +31,7 @@ interface ApiService {
         @Part("name") name: RequestBody,
         @Part("email") email: RequestBody,
         @Part("password") password: RequestBody
-    ): Response
+    ): BaseResponse
 
     @Multipart
     @POST("stories")

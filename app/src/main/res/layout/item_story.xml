@@ -7,13 +7,26 @@
     android:paddingHorizontal="20dp"
     android:paddingVertical="12dp">
     
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_item_photo"
+    <View
+        android:id="@+id/v_item_avatar"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        tools:src="@tools:sample/avatars"
+        android:background="@drawable/bg_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/TextBold"
+        android:id="@+id/tv_item_user_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        tools:text="U"
+        app:layout_constraintStart_toStartOf="@id/v_item_avatar"
+        app:layout_constraintTop_toTopOf="@id/v_item_avatar"
+        app:layout_constraintEnd_toEndOf="@id/v_item_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/v_item_avatar" />
     
     <TextView
         style="@style/TextBold"
@@ -22,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         tools:text="@tools:sample/full_names"
-        app:layout_constraintStart_toEndOf="@id/iv_item_photo"
+        app:layout_constraintStart_toEndOf="@id/v_item_avatar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tv_item_timestamp"/>
 
@@ -41,13 +54,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:maxLines="2"
+        android:ellipsize="end"
         tools:text="@tools:sample/lorem"
         app:layout_constraintStart_toStartOf="@id/tv_item_name"
         app:layout_constraintTop_toBottomOf="@id/tv_item_name"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
-        android:id="@+id/story_image"
+        android:id="@+id/iv_item_photo"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginTop="4dp"

@@ -1,40 +1,77 @@
 package dev.agustacandi.learn.storystory.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
-import com.bumptech.glide.Glide
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import dev.agustacandi.learn.storystory.R
+import dev.agustacandi.learn.storystory.base.BaseFragment
+import dev.agustacandi.learn.storystory.data.lib.ApiResponse
 import dev.agustacandi.learn.storystory.databinding.FragmentHomeBinding
+import dev.agustacandi.learn.storystory.utils.Helper
+import dev.agustacandi.learn.storystory.utils.PreferenceManager
+import dev.agustacandi.learn.storystory.utils.ext.gone
+import org.koin.android.ext.android.inject
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val homeViewModel: HomeViewModel by inject()
+    private val preferenceManager: PreferenceManager by inject()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return _binding?.root
+    ): FragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
+
+    override fun initIntent() {
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        
-
-        binding.addStoryButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_homeFragment_to_addStoryFragment)
+    override fun initUI() {
+        binding.apply {
+            userLabel.text = preferenceManager.getName?.first().toString().uppercase()
+            greetingText.text = getString(R.string.greeting, preferenceManager.getName)
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    override fun initAction() {
+        binding.addStoryButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_addStoryFragment)
+        }
     }
+
+    override fun initProcess() {
+        homeViewModel.getAllStories()
+    }
+
+    override fun initObservers() {
+        with(binding) {
+            homeViewModel.storyResult.observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is ApiResponse.Loading -> progressBar.show()
+                    is ApiResponse.Success -> {
+                        progressBar.gone()
+                        val storyAdapter = StoryAdapter()
+                        val linearLayoutManager = LinearLayoutManager(requireActivity())
+                        val itemDecoration = DividerItemDecoration(requireActivity(), linearLayoutManager.orientation)
+                        storyAdapter.submitList(result.data.listStory)
+                        binding.rvStory.apply {
+                            adapter = storyAdapter
+                            layoutManager = linearLayoutManager
+                            addItemDecoration(itemDecoration)
+                        }
+                    }
+                    is ApiResponse.Error -> {
+                        progressBar.gone()
+                        Helper.showErrorToast(requireActivity(), result.errorMessage)
+                    }
+                    else -> progressBar.gone()
+                }
+            }
+        }
+    }
+
+
 }

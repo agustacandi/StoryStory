@@ -2,21 +2,24 @@ package dev.agustacandi.learn.storystory.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import dev.agustacandi.learn.storystory.data.auth.LoginResult
 
 class PreferenceManager(context: Context) {
-    private var prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    private var prefs: SharedPreferences = context.getSharedPreferences(ConstVal.PREFS_NAME, Context.MODE_PRIVATE)
     private val editor = prefs.edit()
 
-    val getToken = prefs.getString(KEY_TOKEN, "")
-    val getName = prefs.getString(KEY_NAME, "")
+    val getToken = prefs.getString(ConstVal.KEY_TOKEN, "")
+    val getName = prefs.getString(ConstVal.KEY_NAME, "")
 
-    fun setLoginPrefs() {
-
+    fun setLoginPrefs(loginResult: LoginResult) {
+        editor.putString(ConstVal.KEY_NAME, loginResult.name)
+        editor.putString(ConstVal.KEY_TOKEN, loginResult.token)
+        editor.apply()
     }
 
     fun clearAllPreferences() {
-        editor.remove(KEY_TOKEN)
-        editor.remove(KEY_NAME)
+        editor.remove(ConstVal.KEY_TOKEN)
+        editor.remove(ConstVal.KEY_NAME)
         editor.apply()
     }
 }

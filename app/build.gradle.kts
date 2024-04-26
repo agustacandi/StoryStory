@@ -42,8 +42,9 @@ android {
 
 dependencies {
 
-    // Coroutine
-//    implementation("")
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
 
     // Rounded Image
     implementation(libs.circleimageview)
@@ -74,7 +75,9 @@ dependencies {
 
     // Glide
     implementation(libs.glide)
-    implementation(libs.glide.transformations)
+
+    // Fancy Toast
+    implementation(libs.fancyToast)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

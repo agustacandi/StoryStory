@@ -1,4 +1,4 @@
-package dev.agustacandi.learn.storystory.data.remote.response
+package dev.agustacandi.learn.storystory.data.story
 
 import com.google.gson.annotations.SerializedName
 import dev.agustacandi.learn.storystory.data.lib.BaseResponse
@@ -6,6 +6,18 @@ import dev.agustacandi.learn.storystory.data.lib.BaseResponse
 data class StoryResponse(
     @field:SerializedName("listStory")
     val listStory: List<Story> = listOf(),
+): BaseResponse()
+
+data class AddStoryRequest(
+    val description: String,
+    val photo: String
+)
+
+class AddStoryResponse: BaseResponse()
+
+data class DetailStoryResponse(
+    @field:SerializedName("story")
+    val story: Story = Story(),
 ): BaseResponse()
 
 data class Story(
@@ -23,11 +35,11 @@ data class Story(
     val description: String? = null,
 
     @field:SerializedName("lon")
-    val lon: Any? = null,
+    val lon: Float? = null,
 
     @field:SerializedName("id")
     val id: String? = null,
 
     @field:SerializedName("lat")
-    val lat: Any? = null
+    val lat: Float? = null
 )

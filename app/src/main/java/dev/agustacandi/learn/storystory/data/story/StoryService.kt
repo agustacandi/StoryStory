@@ -1,6 +1,5 @@
 package dev.agustacandi.learn.storystory.data.story
 
-import dev.agustacandi.learn.storystory.data.remote.response.StoryResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.GET
@@ -11,9 +10,7 @@ import retrofit2.http.Query
 
 interface StoryService {
     @GET("stories")
-    suspend fun getAllStories(
-        @Query("location") location: Boolean
-    ): StoryResponse
+    suspend fun getAllStories(): StoryResponse
 
     @Multipart
     @POST("stories")

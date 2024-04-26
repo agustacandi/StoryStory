@@ -1,7 +1,7 @@
 package dev.agustacandi.learn.storystory.base
 
 import android.app.Application
-import dev.agustacandi.learn.storystory.di.networkModule
+import dev.agustacandi.learn.storystory.utils.ConstVal
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -15,9 +15,7 @@ class BaseApplication : Application() {
             androidLogger(Level.NONE)
             androidContext(this@BaseApplication)
             modules(
-                listOf(
-                    networkModule
-                )
+                ConstVal.koinModules
             )
         }
     }

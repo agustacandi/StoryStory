@@ -1,25 +1,23 @@
 package dev.agustacandi.learn.storystory.data.auth
 
-import dev.agustacandi.learn.storystory.data.remote.response.LoginResponse
-import dev.agustacandi.learn.storystory.data.remote.response.Response
-import okhttp3.RequestBody
+import dev.agustacandi.learn.storystory.data.lib.BaseResponse
+import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
-import retrofit2.http.Part
 
 interface AuthService {
     @FormUrlEncoded
     @POST("login")
     suspend fun login(
-        @Part("email") email: RequestBody,
-        @Part("password") password: RequestBody
+        @Field("email") email: String,
+        @Field("password") password: String
     ): LoginResponse
 
     @FormUrlEncoded
     @POST("register")
     suspend fun register(
-        @Part("name") name: RequestBody,
-        @Part("email") email: RequestBody,
-        @Part("password") password: RequestBody
-    ): Response
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): RegisterResponse
 }

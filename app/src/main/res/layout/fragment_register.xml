@@ -31,6 +31,7 @@
     <dev.agustacandi.learn.storystory.components.EmailTextField
         style="@style/CustomTextField"
         android:id="@+id/ed_register_email"
+        android:hint="@string/email"
         app:cursorColor="@color/blue"
         app:layout_constraintTop_toBottomOf="@id/ed_register_name"
         app:layout_constraintStart_toStartOf="@id/ed_register_name"
@@ -39,6 +40,7 @@
     <dev.agustacandi.learn.storystory.components.PasswordTextField
         style="@style/CustomTextField"
         android:id="@+id/ed_register_password"
+        android:hint="@string/password"
         app:layout_constraintTop_toBottomOf="@id/ed_register_email"
         app:layout_constraintStart_toStartOf="@id/ed_register_email"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -55,5 +57,16 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ed_register_password" />
+
+    <include
+        android:id="@+id/loading_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        layout="@layout/component_loading_button"
+        app:layout_constraintStart_toStartOf="@id/register_button"
+        app:layout_constraintTop_toTopOf="@id/register_button"
+        app:layout_constraintEnd_toEndOf="@id/register_button"
+        app:layout_constraintBottom_toBottomOf="@id/register_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
