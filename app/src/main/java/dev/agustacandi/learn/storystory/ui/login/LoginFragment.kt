@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.shashank.sony.fancytoastlib.FancyToast
 import dev.agustacandi.learn.storystory.R
 import dev.agustacandi.learn.storystory.base.BaseFragment
 import dev.agustacandi.learn.storystory.data.lib.ApiResponse

@@ -8,7 +8,6 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.content.ContextCompat
 import dev.agustacandi.learn.storystory.R
 
 class EmailTextField @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : AppCompatEditText(context, attrs) {

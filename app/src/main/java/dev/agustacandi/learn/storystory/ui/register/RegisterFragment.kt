@@ -1,10 +1,7 @@
 package dev.agustacandi.learn.storystory.ui.register
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.shashank.sony.fancytoastlib.FancyToast
@@ -12,7 +9,6 @@ import dev.agustacandi.learn.storystory.R
 import dev.agustacandi.learn.storystory.base.BaseFragment
 import dev.agustacandi.learn.storystory.data.lib.ApiResponse
 import dev.agustacandi.learn.storystory.databinding.FragmentRegisterBinding
-import dev.agustacandi.learn.storystory.utils.Helper
 import dev.agustacandi.learn.storystory.utils.ext.gone
 import dev.agustacandi.learn.storystory.utils.ext.show
 import org.koin.android.ext.android.inject
