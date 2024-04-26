@@ -20,11 +20,7 @@ class StoryRepositoryImpl(private val storyService: StoryService) : StoryReposit
         }
     }
 
-    override fun addStory(): Flow<ApiResponse<AddStoryResponse>> {
-        TODO("Not yet implemented")
-    }
+    override fun addStory(): Flow<ApiResponse<AddStoryResponse>> = flow {  }
 
-    override fun detailStory(dto: AddStoryRequest): Flow<ApiResponse<DetailStoryResponse>> {
-        TODO("Not yet implemented")
-    }
+    override fun detailStory(dto: AddStoryRequest): Flow<ApiResponse<DetailStoryResponse>> = flow {  }
 }
