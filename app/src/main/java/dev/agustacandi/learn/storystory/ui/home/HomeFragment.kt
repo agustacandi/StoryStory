@@ -13,6 +13,7 @@ import dev.agustacandi.learn.storystory.databinding.FragmentHomeBinding
 import dev.agustacandi.learn.storystory.utils.Helper
 import dev.agustacandi.learn.storystory.utils.PreferenceManager
 import dev.agustacandi.learn.storystory.utils.ext.gone
+import dev.agustacandi.learn.storystory.utils.ext.show
 import org.koin.android.ext.android.inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -50,12 +51,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         with(binding) {
             homeViewModel.storyResult.observe(viewLifecycleOwner) { result ->
                 when (result) {
-                    is ApiResponse.Loading -> progressBar.show()
+                    is ApiResponse.Loading -> {
+                        progressBar.show()
+                        vErrorFetchData.root.gone()
+                    }
+
                     is ApiResponse.Success -> {
                         progressBar.gone()
+                        vErrorFetchData.root.gone()
                         val storyAdapter = StoryAdapter()
                         val linearLayoutManager = LinearLayoutManager(requireActivity())
-                        val itemDecoration = DividerItemDecoration(requireActivity(), linearLayoutManager.orientation)
+                        val itemDecoration = DividerItemDecoration(
+                            requireActivity(),
+                            linearLayoutManager.orientation
+                        )
                         storyAdapter.submitList(result.data.listStory)
                         binding.rvStory.apply {
                             adapter = storyAdapter
@@ -63,15 +72,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             addItemDecoration(itemDecoration)
                         }
                     }
+
                     is ApiResponse.Error -> {
                         progressBar.gone()
+                        vErrorFetchData.root.show()
                         Helper.showErrorToast(requireActivity(), result.errorMessage)
                     }
-                    else -> progressBar.gone()
+
+                    else -> {
+                        progressBar.gone()
+                        vErrorFetchData.root.gone()
+                    }
                 }
             }
         }
     }
-
-
 }

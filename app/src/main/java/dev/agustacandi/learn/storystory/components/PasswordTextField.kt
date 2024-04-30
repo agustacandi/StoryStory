@@ -9,7 +9,8 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import dev.agustacandi.learn.storystory.R
 
-class PasswordTextField @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : AppCompatEditText(context, attrs) {
+class PasswordTextField @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+    AppCompatEditText(context, attrs) {
 
     init {
         addTextChangedListener(object : TextWatcher {
@@ -18,7 +19,8 @@ class PasswordTextField @JvmOverloads constructor(context: Context, attrs: Attri
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!s.isNullOrEmpty() && s.length < 8) error = context.getString(
-                    R.string.error_password)
+                    R.string.error_password
+                )
             }
         })
     }

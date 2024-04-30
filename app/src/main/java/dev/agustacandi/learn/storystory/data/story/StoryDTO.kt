@@ -5,13 +5,8 @@ import dev.agustacandi.learn.storystory.data.lib.BaseResponse
 
 data class StoryResponse(
     @field:SerializedName("listStory")
-    val listStory: List<Story> = listOf(),
+    val listStory: List<Story> = emptyList(),
 ): BaseResponse()
-
-data class AddStoryRequest(
-    val description: String,
-    val photo: String
-)
 
 class AddStoryResponse: BaseResponse()
 

@@ -15,7 +15,7 @@ object ConstVal {
         preferenceModule,
         viewModelModule,
         authModule,
-        storyModule
+        storyModule,
     )
 
     // Navigation Bar Destination
@@ -28,4 +28,7 @@ object ConstVal {
     const val PREFS_NAME = "storystory.pref"
     const val KEY_TOKEN = "key.token"
     const val KEY_NAME = "key.name"
+
+    const val MAXIMAL_SIZE = 1000000 // 1 MB
+    const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
 }

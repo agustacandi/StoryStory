@@ -22,6 +22,7 @@ class AuthRepositoryImpl(
             } else {
                 val loginResult = response.loginResult
                 preferenceManager.setLoginPrefs(loginResult)
+                reloadKoinModules()
                 emit(ApiResponse.Success(response))
             }
         } catch (e: Exception) {

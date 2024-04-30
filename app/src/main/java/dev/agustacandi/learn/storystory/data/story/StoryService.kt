@@ -6,6 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface StoryService {
     @GET("stories")
@@ -14,9 +15,12 @@ interface StoryService {
     @Multipart
     @POST("stories")
     suspend fun addNewStory(
+        @Part photo: MultipartBody.Part,
         @Part("description") description: RequestBody,
-        @Part("photo") photo: MultipartBody.Part,
-        @Part("lat") lat: RequestBody,
-        @Part("lon") lon: RequestBody,
-    )
+    ): AddStoryResponse
+
+    @GET("stories/{id}")
+    suspend fun getDetailStory(
+        @Path("id") id: String
+    ): DetailStoryResponse
 }

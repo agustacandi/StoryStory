@@ -1,7 +1,10 @@
 package dev.agustacandi.learn.storystory.ui.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import dev.agustacandi.learn.storystory.R
@@ -27,6 +30,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     override fun initUI() {
+        playAnimation()
     }
 
     override fun initAction() {
@@ -65,15 +69,35 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                         Helper.showSuccessToast(requireActivity(), result.data.message)
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
+
                     is ApiResponse.Error -> {
                         loadingButton.root.gone()
                         Helper.showErrorToast(requireActivity(), result.errorMessage)
                     }
+
                     else -> binding.root.gone()
                 }
             }
         }
     }
 
+    private fun playAnimation() {
+        binding.apply {
+            val icon = ObjectAnimator.ofFloat(appIcon, View.ALPHA, 1f).setDuration(100)
+            val title = ObjectAnimator.ofFloat(loginHeadline, View.ALPHA, 1f).setDuration(100)
+            val email = ObjectAnimator.ofFloat(edLoginEmail, View.ALPHA, 1f).setDuration(100)
+            val password = ObjectAnimator.ofFloat(edLoginPassword, View.ALPHA, 1f).setDuration(100)
+            val login = ObjectAnimator.ofFloat(loginButton, View.ALPHA, 1f).setDuration(100)
+            val register = ObjectAnimator.ofFloat(registerButton, View.ALPHA, 1f).setDuration(100)
 
+            val together = AnimatorSet().apply {
+                playTogether(login, register)
+            }
+
+            AnimatorSet().apply {
+                playSequentially(icon, title, email, password, together)
+                start()
+            }
+        }
+    }
 }

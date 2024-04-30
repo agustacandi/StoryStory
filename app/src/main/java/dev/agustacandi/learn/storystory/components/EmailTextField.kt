@@ -10,7 +10,8 @@ import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
 import dev.agustacandi.learn.storystory.R
 
-class EmailTextField @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : AppCompatEditText(context, attrs) {
+class EmailTextField @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+    AppCompatEditText(context, attrs) {
 
     init {
         addTextChangedListener(object : TextWatcher {

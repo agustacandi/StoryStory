@@ -6,71 +6,71 @@
     android:layout_height="wrap_content"
     android:paddingHorizontal="20dp"
     android:paddingVertical="12dp">
-    
+
     <View
         android:id="@+id/v_item_avatar"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:background="@drawable/bg_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        style="@style/TextBold"
         android:id="@+id/tv_item_user_label"
+        style="@style/TextBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:textColor="@color/white"
-        tools:text="U"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/v_item_avatar"
+        app:layout_constraintEnd_toEndOf="@id/v_item_avatar"
         app:layout_constraintStart_toStartOf="@id/v_item_avatar"
         app:layout_constraintTop_toTopOf="@id/v_item_avatar"
-        app:layout_constraintEnd_toEndOf="@id/v_item_avatar"
-        app:layout_constraintBottom_toBottomOf="@id/v_item_avatar" />
-    
+        tools:text="U" />
+
     <TextView
-        style="@style/TextBold"
         android:id="@+id/tv_item_name"
+        style="@style/TextBold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        tools:text="@tools:sample/full_names"
+        app:layout_constraintEnd_toStartOf="@id/tv_item_timestamp"
         app:layout_constraintStart_toEndOf="@id/v_item_avatar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tv_item_timestamp"/>
+        tools:text="@tools:sample/full_names" />
 
     <TextView
-        style="@style/TextRegular"
         android:id="@+id/tv_item_timestamp"
+        style="@style/TextRegular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="@tools:sample/full_names"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names" />
 
     <TextView
-        style="@style/TextRegular"
         android:id="@+id/tv_item_description"
+        style="@style/TextRegular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:maxLines="2"
         android:ellipsize="end"
-        tools:text="@tools:sample/lorem"
+        android:maxLines="2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_item_name"
         app:layout_constraintTop_toBottomOf="@id/tv_item_name"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        tools:text="@tools:sample/lorem" />
 
     <ImageView
         android:id="@+id/iv_item_photo"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginTop="4dp"
-        android:scaleType="centerCrop"
-        tools:src="@tools:sample/backgrounds/scenic"
         android:contentDescription="@string/story_image_content_description"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_item_description"
         app:layout_constraintTop_toBottomOf="@id/tv_item_description"
-        app:layout_constraintEnd_toEndOf="parent" />
+        tools:src="@tools:sample/backgrounds/scenic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

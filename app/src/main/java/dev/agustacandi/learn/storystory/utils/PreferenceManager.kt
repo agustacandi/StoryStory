@@ -5,7 +5,8 @@ import android.content.SharedPreferences
 import dev.agustacandi.learn.storystory.data.auth.LoginResult
 
 class PreferenceManager(context: Context) {
-    private var prefs: SharedPreferences = context.getSharedPreferences(ConstVal.PREFS_NAME, Context.MODE_PRIVATE)
+    private var prefs: SharedPreferences =
+        context.getSharedPreferences(ConstVal.PREFS_NAME, Context.MODE_PRIVATE)
     private val editor = prefs.edit()
 
     val getToken = prefs.getString(ConstVal.KEY_TOKEN, "")

@@ -1,7 +1,10 @@
 package dev.agustacandi.learn.storystory.ui.register
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.shashank.sony.fancytoastlib.FancyToast
@@ -27,6 +30,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     }
 
     override fun initUI() {
+        playAnimation()
     }
 
     override fun initAction() {
@@ -86,6 +90,23 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
                     else -> binding.root.gone()
                 }
+            }
+        }
+    }
+
+    private fun playAnimation() {
+        binding.apply {
+            val icon = ObjectAnimator.ofFloat(appIcon, View.ALPHA, 1f).setDuration(100)
+            val title = ObjectAnimator.ofFloat(registerHeadline, View.ALPHA, 1f).setDuration(100)
+            val name = ObjectAnimator.ofFloat(edRegisterName, View.ALPHA, 1f).setDuration(100)
+            val email = ObjectAnimator.ofFloat(edRegisterEmail, View.ALPHA, 1f).setDuration(100)
+            val password =
+                ObjectAnimator.ofFloat(edRegisterPassword, View.ALPHA, 1f).setDuration(100)
+            val register = ObjectAnimator.ofFloat(registerButton, View.ALPHA, 1f).setDuration(100)
+
+            AnimatorSet().apply {
+                playSequentially(icon, title, name, email, password, register)
+                start()
             }
         }
     }

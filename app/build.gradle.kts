@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -73,8 +74,11 @@ dependencies {
     implementation(libs.retrofit2.retrofit)
     implementation(libs.logging.interceptor)
 
-    // Glide
-    implementation(libs.glide)
+    // UCrop
+    implementation(libs.ucrop)
+
+    // Coil
+    implementation(libs.coil)
 
     // Fancy Toast
     implementation(libs.fancyToast)

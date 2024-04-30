@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,45 +13,47 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
-            
+
             <View
                 android:id="@+id/user_avatar"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="20dp"
                 android:background="@drawable/bg_button"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                style="@style/TextBold"
                 android:id="@+id/user_label"
+                style="@style/TextBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                tools:text="U"
+                app:layout_constraintBottom_toBottomOf="@id/user_avatar"
+                app:layout_constraintEnd_toEndOf="@id/user_avatar"
                 app:layout_constraintStart_toStartOf="@id/user_avatar"
                 app:layout_constraintTop_toTopOf="@id/user_avatar"
-                app:layout_constraintEnd_toEndOf="@id/user_avatar"
-                app:layout_constraintBottom_toBottomOf="@id/user_avatar" />
+                tools:text="U" />
 
             <TextView
                 android:id="@+id/greeting_text"
+                style="@style/TextBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                tools:text="Hello User"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/user_avatar"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                tools:text="Hello User" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progress_bar"
@@ -60,7 +62,7 @@
                 android:indeterminate="true"
                 app:indicatorColor="@color/blue"
                 app:layout_constraintBottom_toBottomOf="parent" />
-            
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -81,13 +83,21 @@
         android:id="@+id/add_story_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_mode_edit_24"
+        android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@color/blue"
         android:backgroundTint="@color/blue"
         android:contentDescription="@string/add_story_button_content_description"
-        android:layout_gravity="bottom|end"
-        app:tint="@color/white"/>
+        android:src="@drawable/baseline_mode_edit_24"
+        app:tint="@color/white" />
+
+    <include
+        android:id="@+id/v_error_fetch_data"
+        layout="@layout/view_failed_load_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

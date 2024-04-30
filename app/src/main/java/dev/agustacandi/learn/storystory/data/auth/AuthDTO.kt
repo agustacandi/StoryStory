@@ -33,4 +33,4 @@ data class RegisterRequest(
     val password: String
 )
 
-class RegisterResponse: BaseResponse()
+class RegisterResponse : BaseResponse()

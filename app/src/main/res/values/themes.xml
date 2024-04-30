@@ -1,8 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
     <style name="Base.Theme.StoryStory" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/blue</item>
         <item name="colorOutline">@color/blue</item>
     </style>
@@ -41,5 +38,14 @@
         <item name="android:fontFamily">@font/inter_tight_regular</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:paddingHorizontal">16dp</item>
+    </style>
+
+    <style name="Theme.StoryStory.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <item name="appWidgetRadius">16dp</item>
+        <item name="appWidgetInnerRadius">8dp</item>
+    </style>
+
+    <style name="Theme.StoryStory.AppWidgetContainer" parent="Theme.StoryStory.AppWidgetContainerParent">
+        <item name="appWidgetPadding">16dp</item>
     </style>
 </resources>
