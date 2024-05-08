@@ -4,20 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.agustacandi.learn.storystory.data.lib.ApiResponse
-import dev.agustacandi.learn.storystory.data.story.StoryRepositoryImpl
-import dev.agustacandi.learn.storystory.data.story.StoryResponse
-import kotlinx.coroutines.launch
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import dev.agustacandi.learn.storystory.data.story.Story
+import dev.agustacandi.learn.storystory.data.story.StoryRepository
 
-class HomeViewModel(private val storyRepositoryImpl: StoryRepositoryImpl) : ViewModel() {
-    private val _storiesResult = MutableLiveData<ApiResponse<StoryResponse>>()
-    val storyResult: LiveData<ApiResponse<StoryResponse>> by lazy { _storiesResult }
+class HomeViewModel(private val storyRepository: StoryRepository) : ViewModel() {
+    private var _storyResult = MutableLiveData<PagingData<Story>>()
+    val storyResult: LiveData<PagingData<Story>> = _storyResult
 
-    fun getAllStories() {
-        viewModelScope.launch {
-            storyRepositoryImpl.getAllStories().collect {
-                _storiesResult.value = it
-            }
+    fun getAllStories(size: Int = 5) {
+        storyRepository.getAllStories(size).cachedIn(viewModelScope).observeForever {
+            _storyResult.value = it
         }
     }
 }

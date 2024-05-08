@@ -9,12 +9,9 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import dev.agustacandi.learn.storystory.base.BaseFragment
-import dev.agustacandi.learn.storystory.data.lib.ApiResponse
 import dev.agustacandi.learn.storystory.data.story.Story
 import dev.agustacandi.learn.storystory.databinding.FragmentDetailStoryBinding
-import dev.agustacandi.learn.storystory.utils.Helper
 import dev.agustacandi.learn.storystory.utils.ext.formatDate
-import dev.agustacandi.learn.storystory.utils.ext.gone
 import org.koin.android.ext.android.inject
 
 class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
@@ -49,33 +46,17 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
     }
 
     override fun initObservers() {
-        detailStoryViewModel.detailStoryResult.observe(viewLifecycleOwner) { result ->
-            binding.apply {
-                when (result) {
-                    is ApiResponse.Loading -> progressBar.show()
-                    is ApiResponse.Success -> {
-                        progressBar.gone()
-
-                        setStoryDetail(result.data.story)
-                    }
-
-                    is ApiResponse.Error -> {
-                        progressBar.gone()
-                        Helper.showErrorToast(requireActivity(), result.errorMessage)
-                    }
-
-                    else -> progressBar.gone()
-                }
-            }
+        detailStoryViewModel.detailStory(storyId.toString()).observe(viewLifecycleOwner) { result ->
+            setStoryDetail(result)
         }
     }
 
     private fun setStoryDetail(story: Story) {
         binding.apply {
-            tvItemUserLabel.text = story.name?.first().toString().uppercase()
+            tvItemUserLabel.text = story.name.first().toString().uppercase()
             tvDetailDescription.text = story.description
             tvDetailName.text = story.name
-            tvDetailTimestamp.text = story.createdAt?.formatDate()
+            tvDetailTimestamp.text = story.createdAt.formatDate()
             ivDetailPhoto.load(story.photoUrl) {
                 placeholder(ColorDrawable(Color.LTGRAY))
                 transformations(RoundedCornersTransformation(20f, 20f, 20f, 20f))

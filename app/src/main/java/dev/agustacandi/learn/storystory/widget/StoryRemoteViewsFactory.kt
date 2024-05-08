@@ -35,15 +35,15 @@ internal class StoryRemoteViewsFactory(
         get() = Dispatchers.Main + parentJob
 
     override fun onCreate() {
-        launch {
-            storyRepositoryImpl.getAllStories().collect {
-                when (it) {
-                    is ApiResponse.Success -> updateWidgetItems(it.data.listStory)
-                    else -> Log.d("StoryWidget", "Error")
-                }
-            }
-
-        }
+//        launch {
+//            storyRepositoryImpl.getAllStories(location = 0).collect {
+//                when (it) {
+//                    is ApiResponse.Success -> updateWidgetItems(it.data.listStory)
+//                    else -> Log.d("StoryWidget", "Error")
+//                }
+//            }
+//
+//        }
     }
 
     override fun onDataSetChanged() {

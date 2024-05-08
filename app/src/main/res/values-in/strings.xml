@@ -49,4 +49,10 @@
     <string name="choose">Pilih</string>
     <string name="x_icon_content_description">Ikon X</string>
     <string name="failed_to_fetch_data">Gagal mendapatkan data</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="retry">Ulangi</string>
+    <string name="use_location">Gunakan lokasi?</string>
+    <string name="loading">Memuat…</string>
+    <string name="location_not_found">Lokasi tidak ditemukan</string>
+    <string name="location_denied">Ijin ditolak. Gagal mengakses lokasi.</string>
 </resources>

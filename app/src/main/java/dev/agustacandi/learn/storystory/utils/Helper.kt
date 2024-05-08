@@ -10,8 +10,6 @@ import androidx.core.content.FileProvider
 import com.shashank.sony.fancytoastlib.FancyToast
 import dev.agustacandi.learn.storystory.BuildConfig
 import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -56,10 +54,5 @@ object Helper {
             "${BuildConfig.APPLICATION_ID}.fileprovider",
             imageFile
         )
-    }
-
-    private fun createCustomTempFile(context: Context): File {
-        val filesDir = context.externalCacheDir
-        return File.createTempFile(timeStamp, ".jpg", filesDir)
     }
 }

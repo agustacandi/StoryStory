@@ -1,8 +1,8 @@
 package dev.agustacandi.learn.storystory.ui.settings
 
 import androidx.lifecycle.ViewModel
-import dev.agustacandi.learn.storystory.data.auth.AuthRepositoryImpl
+import dev.agustacandi.learn.storystory.data.auth.AuthRepository
 
-class SettingsViewModel(private val authRepositoryImpl: AuthRepositoryImpl) : ViewModel() {
-    fun logout() = authRepositoryImpl.logout()
+class SettingsViewModel(private val authRepository: AuthRepository) : ViewModel() {
+    fun logout() = authRepository.logout()
 }

@@ -48,4 +48,10 @@
     <string name="choose">Choose</string>
     <string name="x_icon_content_description">X Icon</string>
     <string name="failed_to_fetch_data">Failed to fetch data</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="retry">Retry</string>
+    <string name="use_location">Use location?</string>
+    <string name="loading">Loading…</string>
+    <string name="location_not_found">Location not found</string>
+    <string name="location_denied">Permission denied. Unable to access location.</string>
 </resources>

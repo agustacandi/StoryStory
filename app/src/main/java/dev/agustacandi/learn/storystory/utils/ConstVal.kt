@@ -2,6 +2,7 @@ package dev.agustacandi.learn.storystory.utils
 
 import dev.agustacandi.learn.storystory.BuildConfig
 import dev.agustacandi.learn.storystory.R
+import dev.agustacandi.learn.storystory.di.databaseModule
 import dev.agustacandi.learn.storystory.di.feature.authModule
 import dev.agustacandi.learn.storystory.di.feature.storyModule
 import dev.agustacandi.learn.storystory.di.networkModule
@@ -14,6 +15,7 @@ object ConstVal {
         networkModule,
         preferenceModule,
         viewModelModule,
+        databaseModule,
         authModule,
         storyModule,
     )
@@ -23,6 +25,8 @@ object ConstVal {
 
     const val SPLASH_SCREEN_DURATION = 3
     const val BASE_URL = BuildConfig.BASE_URL
+    const val DATABASE_NAME = "story_database"
+    const val INITIAL_PAGE_INDEX = 1
 
     // Shared Preferences
     const val PREFS_NAME = "storystory.pref"

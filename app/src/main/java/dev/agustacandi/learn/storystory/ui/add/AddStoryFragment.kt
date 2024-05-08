@@ -1,13 +1,18 @@
 package dev.agustacandi.learn.storystory.ui.add
 
+import android.Manifest
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.yalantis.ucrop.UCrop
 import dev.agustacandi.learn.storystory.R
 import dev.agustacandi.learn.storystory.base.BaseFragment
@@ -26,6 +31,9 @@ class AddStoryFragment : BaseFragment<FragmentAddStoryBinding>() {
     private val addStoryViewModel: AddStoryViewModel by inject()
 
     private var currentImageUri: Uri? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var lat: Double? = null
+    private var lon: Double? = null
 
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
@@ -40,6 +48,14 @@ class AddStoryFragment : BaseFragment<FragmentAddStoryBinding>() {
     ) { isSuccess ->
         if (isSuccess) {
             launchUCrop(currentImageUri!!)
+        }
+    }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (!isGranted) {
+            Helper.showErrorToast(requireActivity(), getString(R.string.location_denied))
         }
     }
 
@@ -81,11 +97,30 @@ class AddStoryFragment : BaseFragment<FragmentAddStoryBinding>() {
             ibGalleryButton.setOnClickListener {
                 launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
             }
+            smLocation.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) ||
+                        checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                    ) {
+                        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                            if (location != null) {
+                                lat = location.latitude
+                                lon = location.longitude
+                            }
+                        }
+                    }
+                }
+            }
             buttonAdd.setOnClickListener {
                 val description = edAddDescription.text.toString()
 
                 if (description.isNotEmpty() && currentImageUri != null) {
-                    addStoryViewModel.addStory(currentImageUri!!, description)
+                    addStoryViewModel.addStory(
+                        currentImageUri!!,
+                        description,
+                        lat ?: 0.0,
+                        lon ?: 0.0
+                    )
                 } else {
                     Helper.showErrorToast(requireActivity(), getString(R.string.error_add_story))
                 }
@@ -94,6 +129,8 @@ class AddStoryFragment : BaseFragment<FragmentAddStoryBinding>() {
     }
 
     override fun initProcess() {
+        requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
     }
 
     override fun initObservers() {
@@ -137,4 +174,10 @@ class AddStoryFragment : BaseFragment<FragmentAddStoryBinding>() {
         }
     }
 
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            requireActivity(),
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+    }
 }

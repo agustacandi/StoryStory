@@ -5,8 +5,8 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
@@ -15,7 +15,7 @@ import dev.agustacandi.learn.storystory.databinding.ItemStoryBinding
 import dev.agustacandi.learn.storystory.utils.ext.formatDate
 
 class StoryAdapter :
-    ListAdapter<Story, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<Story, StoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(story: Story) {
@@ -24,13 +24,13 @@ class StoryAdapter :
                     placeholder(ColorDrawable(Color.LTGRAY))
                     transformations(RoundedCornersTransformation(20f, 20f, 20f, 20f))
                 }
-                tvItemUserLabel.text = story.name?.first().toString().uppercase()
+                tvItemUserLabel.text = story.name.first().toString().uppercase()
                 tvItemName.text = story.name
                 tvItemDescription.text = story.description
-                tvItemTimestamp.text = story.createdAt?.formatDate()
+                tvItemTimestamp.text = story.createdAt.formatDate()
                 root.setOnClickListener {
                     val navigateToDetailStory =
-                        HomeFragmentDirections.actionHomeFragmentToDetailStoryFragment(story.id.toString())
+                        HomeFragmentDirections.actionHomeFragmentToDetailStoryFragment(story.id)
                     it.findNavController().navigate(navigateToDetailStory)
                 }
             }
@@ -46,8 +46,10 @@ class StoryAdapter :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val user = getItem(position)
-        holder.bind(user)
+        val story = getItem(position)
+        if (story != null) {
+            holder.bind(story)
+        }
     }
 
     companion object {

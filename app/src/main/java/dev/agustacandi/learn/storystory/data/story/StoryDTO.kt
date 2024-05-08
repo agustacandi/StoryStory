@@ -1,5 +1,7 @@
 package dev.agustacandi.learn.storystory.data.story
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import dev.agustacandi.learn.storystory.data.lib.BaseResponse
 
@@ -12,29 +14,31 @@ class AddStoryResponse: BaseResponse()
 
 data class DetailStoryResponse(
     @field:SerializedName("story")
-    val story: Story = Story(),
+    val story: Story,
 ): BaseResponse()
 
+@Entity(tableName = "stories")
 data class Story(
 
+    @PrimaryKey
+    @field:SerializedName("id")
+    val id: String,
+
     @field:SerializedName("photoUrl")
-    val photoUrl: String? = null,
+    val photoUrl: String,
 
     @field:SerializedName("createdAt")
-    val createdAt: String? = null,
+    val createdAt: String,
 
     @field:SerializedName("name")
-    val name: String? = null,
+    val name: String,
 
     @field:SerializedName("description")
-    val description: String? = null,
+    val description: String,
 
     @field:SerializedName("lon")
-    val lon: Float? = null,
-
-    @field:SerializedName("id")
-    val id: String? = null,
+    val lon: Double = 0.0,
 
     @field:SerializedName("lat")
-    val lat: Float? = null
+    val lat: Double = 0.0
 )

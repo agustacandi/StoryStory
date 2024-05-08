@@ -5,6 +5,7 @@ import dev.agustacandi.learn.storystory.utils.ConstVal
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
 
 class BaseApplication : Application() {
@@ -18,5 +19,10 @@ class BaseApplication : Application() {
                 ConstVal.koinModules
             )
         }
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        stopKoin()
     }
 }
